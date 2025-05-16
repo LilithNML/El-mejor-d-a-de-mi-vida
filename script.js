@@ -29,18 +29,3 @@ function actualizarContador() {
 
 actualizarContador();
 setInterval(actualizarContador, 1000);
-
-// YouTube player API para controlar el volumen
-let player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('musicaYT', {
-    events: {
-      'onReady': function (event) {
-        document.getElementById('btnMusica').addEventListener('click', () => {
-          event.target.setVolume(30); // Volumen 30%
-          event.target.playVideo();
-        });
-      }
-    }
-  });
-}
