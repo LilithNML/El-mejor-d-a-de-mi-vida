@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Desde que empezó todo</title>
+  <title>Desde que comenzó todo</title>
   <link rel="stylesheet" href="styles.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
 </head>
@@ -11,19 +11,22 @@
   <div class="container">
     <h1>Desde que empezó todo...</h1>
     <div id="contador" class="contador">Cargando...</div>
+    <button id="btnMusica">Escuchar música</button>
   </div>
   <div class="fondo"></div>
 
-  <!-- Música desde YouTube -->
-  <div style="position: absolute; left: -9999px; top: -9999px;">
-    <iframe id="musicaYT"
+  <!-- Música desde YouTube oculta -->
+  <div style="display: none;">
+    <iframe
+      id="musicaYT"
       width="0" height="0"
-      src="https://www.youtube.com/embed/7maJOI3QMu0?autoplay=1&loop=1&playlist=7maJOI3QMu0&mute=1"
+      src="https://www.youtube.com/embed/7maJOI3QMu0?enablejsapi=1&loop=1&playlist=7maJOI3QMu0"
       frameborder="0"
       allow="autoplay"
     ></iframe>
   </div>
 
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="script.js"></script>
 </body>
 </html>
