@@ -3,7 +3,7 @@ const fechaInicio = new Date("2024-11-09T00:00:00");
 
 function actualizarContador() {
   const ahora = new Date();
-  let diferencia = ahora - fechaInicio;
+  const diferencia = ahora - fechaInicio;
 
   const segundosTotales = Math.floor(diferencia / 1000);
   const minutos = Math.floor(segundosTotales / 60) % 60;
@@ -14,12 +14,33 @@ function actualizarContador() {
   const meses = Math.floor((diasTotales % 365.25) / 30.44);
   const días = Math.floor((diasTotales % 365.25) % 30.44);
 
-  contador.textContent = 
-    `${años} año(s), ${meses} mes(es), ${días} día(s), ` +
-    `${String(horas).padStart(2, '0')}h:` +
-    `${String(minutos).padStart(2, '0')}m:` +
-    `${String(segundosTotales % 60).padStart(2, '0')}s`;
+  let partes = [];
+
+  if (años > 0) partes.push(`${años} ${años === 1 ? "año" : "años"}`);
+  if (meses > 0 || años > 0) partes.push(`${meses} ${meses === 1 ? "mes" : "meses"}`);
+  partes.push(`${días} ${días === 1 ? "día" : "días"}`);
+
+  const tiempo = `${String(horas).padStart(2, '0')}h:` +
+                 `${String(minutos).padStart(2, '0')}m:` +
+                 `${String(segundosTotales % 60).padStart(2, '0')}s`;
+
+  contador.textContent = `${partes.join(', ')}, ${tiempo}`;
 }
 
 actualizarContador();
 setInterval(actualizarContador, 1000);
+
+// YouTube player API para controlar el volumen
+let player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('musicaYT', {
+    events: {
+      'onReady': function (event) {
+        document.getElementById('btnMusica').addEventListener('click', () => {
+          event.target.setVolume(30); // Volumen 30%
+          event.target.playVideo();
+        });
+      }
+    }
+  });
+}
